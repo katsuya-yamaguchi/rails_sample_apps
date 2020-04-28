@@ -13,19 +13,28 @@ MIT ライセンスと Beerware ライセンスのもとに公開されていま
 ## 使い方
 
 このアプリケーションを動かす場合は、まずはリポジトリを手元にクローンしてください。
-その後、次のコマンドで必要になる RubyGems をインストールします。
+
+Dockerイメージの作成を行う。  
 
 ```
-$ bundle install --without production
+$ docker-compose build
 ```
 
-その後、データベースへのマイグレーションを実行します。
+作成したコンテナを起動する。
 
 ```
-$ rails db:migrate
+$ docker-compose up -d
 ```
 
-最後に、テストを実行してうまく動いているかどうか確認してください。
+その後、データベースの作成 and マイグレーション and テストデータの挿入を実行します。
+
+```
+$ docker-compose run app rails db:create
+$ docker-compose run app rails db:migrate
+$ docker-compose run app rails db:seed
+```
+
+テストを実行してうまく動いているかどうか確認してください。
 
 ```
 $ rails test

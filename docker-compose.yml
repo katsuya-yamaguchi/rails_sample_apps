@@ -3,12 +3,12 @@ services:
   app:
     build: .
     environment:
-      RAILS_ENV: development
+      RAILS_ENV: production
       DATABASE_URL: mysql2://root:pass@db:3306
     ports:
       - '3000:3000'
     volumes: 
-      - .:/sample_rails_apps
+      - .:/rails_sample_apps
     depends_on:
       - db
   db:
